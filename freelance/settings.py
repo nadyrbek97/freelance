@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
-    'task'
+    'task',
+]
+
+INSTALLED_APPS += [
+    # Rest Framework
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
