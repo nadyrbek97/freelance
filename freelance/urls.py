@@ -19,7 +19,7 @@ from django.urls import path, include
 
 v1 = ([
     path('user/', include('users.urls')),
-    # path('task/', include('task.urls'))
+    path('task/', include('task.urls'))
 ])
 
 urlpatterns = [
