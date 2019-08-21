@@ -18,7 +18,7 @@ class Task(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     created = models.DateTimeField(auto_now_add=True)
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    executor = models.ForeignKey(CustomUser, related_name='executor', on_delete=models.CASCADE, null=True)
+    executor = models.ForeignKey(CustomUser, related_name='executor', on_delete=models.CASCADE, null=True, blank=True)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=NEW)
 
     def __str__(self):
