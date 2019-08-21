@@ -21,6 +21,7 @@ class TaskTest(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
+        self.task_create_url = reverse('task-create')
         self.test_customer = CustomUser.objects.create_user(username="customer",
                                                             password="test123",
                                                             email="customer@gmail.com",
@@ -39,7 +40,6 @@ class TaskTest(APITestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_task_create_success(self):
-        test_url = reverse('task-create')
 
         data = {
             "title": "test title",
@@ -49,12 +49,11 @@ class TaskTest(APITestCase):
         # login customer
         self.client.post(self.login_url, self.customer_data)
 
-        response = self.client.post(test_url, data)
+        response = self.client.post(self.task_create_url, data)
 
         self.assertEqual(response.status_code, 201)
 
     def test_task_create_key_error(self):
-        test_url = reverse('task-create')
 
         data = {
             "title": "test title",
@@ -64,6 +63,20 @@ class TaskTest(APITestCase):
         # login customer
         self.client.post(self.login_url, self.customer_data)
 
-        response = self.client.post(test_url, data)
+        response = self.client.post(self.task_create_url, data)
 
         self.assertEqual(response.status_code, 400)
+
+    def test_task_create_forbidden(self):
+
+        data = {
+            "title": "test title",
+            "description": "this is description",
+            "price": 500
+        }
+        # login executor
+        self.client.post(self.login_url, self.executor_data)
+
+        response = self.client.post(self.task_create_url, data)
+
+        self.assertEqual(response.status_code, 403)
