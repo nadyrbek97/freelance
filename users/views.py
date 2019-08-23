@@ -1,6 +1,6 @@
 from rest_framework import views, status
 from rest_framework.response import Response
-from rest_framework.permissions import (AllowAny)
+from rest_framework.permissions import (AllowAny, IsAuthenticated)
 
 from django.contrib.auth import authenticate, login, logout
 
@@ -10,6 +10,7 @@ from .models import CustomUser
 
 
 class UserRegistrationView(views.APIView):
+    permission_classes = [AllowAny, ]
 
     def post(self, request):
         serializer = UserRegistrationSerializer(data=request.data)
@@ -24,6 +25,7 @@ class UserRegistrationView(views.APIView):
 
 
 class UserLoginView(views.APIView):
+    permission_classes = [AllowAny, ]
 
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
