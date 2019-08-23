@@ -60,7 +60,7 @@ class TaskTest(APITestCase):
 
         response = self.client.post(self.task_create_url, data)
 
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 302)
 
     def test_task_create_key_error(self):
 
@@ -112,4 +112,4 @@ class TaskTest(APITestCase):
         self.client.post(self.task_get_url, data)
 
         self.assertEqual(self.test_executor.balance + self.test_task.price,
-                         self.test_executor.balance + self.test_task.price)
+                         600)
