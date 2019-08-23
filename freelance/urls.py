@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from users.views import api_root_view
+
 
 v1 = ([
-    path('user/', include('users.urls')),
-    path('task/', include('task.urls'))
+    path('user/', include('users.urls'), name='user'),
+    path('task/', include('task.urls'), name='task')
 ])
 
 urlpatterns = [
+    path('', api_root_view, name='api-root'),
     path('admin/', admin.site.urls),
     path('api/v1/', include(v1))
 ]

@@ -1,12 +1,25 @@
 from rest_framework import views, status
 from rest_framework.response import Response
+from rest_framework.reverse import reverse as rest_reverse
 from rest_framework.permissions import (AllowAny, )
+from rest_framework.decorators import api_view
 
 from django.contrib.auth import authenticate, login
 
 from .serializers import (UserRegistrationSerializer,
                           UserLoginSerializer)
 from .models import CustomUser
+
+
+@api_view(['GET'])
+def api_root_view(request, format=None):
+    return Response({
+        'User Register': rest_reverse('user-registration', request=request, format=format),
+        'User Log In': rest_reverse('user-login', request=request, format=format),
+        'Task List': rest_reverse('task-list', request=request, format=format),
+        'Task Create': rest_reverse('task-create', request=request, format=format),
+        'Get Task': rest_reverse('task-get', request=request, format=format)
+    })
 
 
 class UserRegistrationView(views.APIView):
