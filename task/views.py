@@ -78,4 +78,5 @@ class GetCustomerTaskView(views.APIView):
             CustomUser.get_payment(executor_id, task.price)
 
             return redirect('task-detail', task_id)
-        return Response({"permission_error": "Only Executor allowed to get the Task"})
+        return Response({"permission_error": "Only Executor allowed to get the Task"},
+                        status=status.HTTP_403_FORBIDDEN)
