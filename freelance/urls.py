@@ -20,8 +20,8 @@ from users.views import api_root_view
 
 
 v1 = ([
-    path('user/', include('users.urls'), name='user'),
-    path('task/', include('task.urls'), name='task')
+    path('user/', include('users.urls')),
+    path('task/', include('task.urls'))
 ])
 
 urlpatterns = [
