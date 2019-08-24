@@ -1,8 +1,5 @@
 # Freelance area 
-```
-Freelance area where customer cat create their task and 
-developers can get that tasks and execute them.
-```
+#### Freelance area where customer cat create their task and developers can get that tasks and execute them.
 
 # Installation and run 
 ```
@@ -30,8 +27,9 @@ python manage.py test
 ### transaction.atomic()
 ```
 transaction.atomic() provides us safety transaction management.
-If function under atomic() executes without any problem all changes saves in data base.
-Otherwice nothing will be saved.
+If function under atomic() it executes without any problem.
+Because atomic() locks every row that is in queryset.
+If some problems will happen during the transaction, nothing will be changed in data basae.
 It is very usefull when we work with money transactions to avoid any misscalculations.
 ```
 
